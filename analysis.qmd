@@ -1,0 +1,188 @@
+---
+title: "analysis"
+format: html
+editor: visual
+---
+
+```{r}
+library(targets)
+library(dplyr)
+library(knitr)
+library(kableExtra)
+```
+
+```{r}
+tar_read(sum_full_data)
+```
+
+```{r}
+tar_read(missing_de_data)
+```
+
+
+```{r}
+tar_read(sum_de_data)
+```
+
+```{r}
+tar_read(salary_experience_plot)
+```
+
+```{r}
+tar_read(salary_company_loc_plot)
+
+```
+
+```{r}
+tar_read(salary_trend_plot)
+```
+
+```{r}
+tar_read(summary_lm)
+```
+
+
+### Numeric Variable
+
+```{r, results='asis'}
+tar_load(de_data)
+# Filter out numerical variables from train dataset and set it into a new df
+numerical_dat <- de_data[, sapply(de_data, is.numeric)]
+
+numerical_summary <- data.frame(
+  Variable = character(0),
+  Min = numeric(0),
+  Quartile_1 = numeric(0),
+  Median = numeric(0),
+  Mean = numeric(0),
+  Quartile_3 = numeric(0),
+  Max = numeric(0),
+  stringsAsFactors = FALSE
+)
+
+# Create summary statistics table for numerical variables
+for (i in 2:ncol(numerical_dat)) {
+  x <- numerical_dat[, 2]
+  
+  # Calculate summary statistics using summary()
+  summary_result <- summary(x)
+  
+  # Define a regular expression pattern to match the numeric value
+  pattern <- "-?\\d+\\.?\\d*"
+  
+  # Create a data frame for the current numerical variable
+  result_df <- data.frame(
+    Variable = colnames(numerical_dat)[i],
+    Min = regmatches(summary_result[1], gregexpr(pattern, summary_result[1], perl=TRUE))[[1]],
+    Quartile_1 = regmatches(summary_result[2], gregexpr(pattern, summary_result[2],perl=TRUE))[[1]],
+    Median = round(as.numeric(regmatches(summary_result[3], gregexpr(pattern, summary_result[3], perl=TRUE))[[1]]),2),
+    Mean = round(as.numeric(regmatches(summary_result[4], gregexpr(pattern, summary_result[4], perl=TRUE))[[1]]),2),
+    Quartile_3 = regmatches(summary_result[5], gregexpr(pattern, summary_result[5],perl=TRUE))[[1]],
+    Max = regmatches(summary_result[6], gregexpr(pattern, summary_result[6], perl=TRUE))[[1]],
+    stringsAsFactors = FALSE
+  )
+  
+  # Bind the result to the summary dataframe
+  numerical_summary <- rbind(numerical_summary, result_df)
+  options(scipen = 0)
+}
+
+# Set row names to be the names of the numerical variables
+rownames(numerical_summary) <- numerical_summary$Variable
+numerical_summary <- numerical_summary[, -1]
+
+# Creating a scrollable HTML table
+html_numerical_table <- kable(numerical_summary, "html") %>%
+  kable_styling(full_width = FALSE) %>%
+  as.character()
+
+# Creating scrollable div
+html_numerical_output <- paste0(
+  '<div style="max-height: 400px; overflow-y: auto;" id="NumericVar">',
+  '<p>Summary statistics of ltd aggregate data features</p>',
+  html_numerical_table,
+  '</div>'
+)
+
+cat(html_numerical_output)
+
+```
+
+### Factor Variable
+
+```{r, results='asis'}
+
+# Filter out factor variables from train dataset and set it into new df
+factor_dat <- de_data[, sapply(de_data, is.factor)]
+
+# Create an empty dataframe to store results
+factor_summary <- data.frame(
+  Factor_Variable = character(0),
+  Count = numeric(0),
+  Unique = numeric(0),
+  Mode = character(0),
+  Frequency = numeric(0),
+  stringsAsFactors = FALSE
+)
+
+# Create summary statistics table for factor variables
+for (i in 1:ncol(factor_dat)) {
+  x <- factor_dat[, i]
+  
+  # Get distinct values
+  unique_values <- unique(x)
+  
+  # Generate frequency table
+  table_result <- table(factor_dat[, i])
+
+  # Remove NAs from the result
+  table_result <- table_result[!is.na(names(table_result))]
+
+  # Find the level with the highest frequency
+  mode <- names(which.max(table_result))
+  
+  # Frequency of the mode values
+  mode_freq <- sum(x == mode, na.rm = TRUE)
+  
+  # Create a data frame for the current factor variable
+  result_df <- data.frame(
+    Factor_Variable = names(factor_dat)[i],
+    Count = sum(!is.na(x)),
+    Unique = sum(!is.na(unique_values)),
+    Mode = mode,
+    Frequency = mode_freq,
+    stringsAsFactors = FALSE
+  )
+  
+  # Bind the result to the summary dataframe
+  factor_summary <- rbind(factor_summary, result_df)
+}
+
+# Set row names to be the names of the factor variables
+rownames(factor_summary) <- factor_summary$Factor_Variable
+factor_summary <- factor_summary[, -1]
+
+# Creating a scrollable HTML table
+html_categorical_table <- kable(factor_summary, "html") %>%
+  kable_styling(full_width = FALSE) %>%
+  as.character()
+
+# Creating scrollable div
+html_categorical_output <- paste0(
+  '<div style="max-height: 400px; overflow-y: auto;" id="NumericVar">',
+  '<p>Summary statistics of factor features</p>',
+  html_categorical_table,
+  '</div>'
+)
+
+cat(html_categorical_output)
+```
+
+
+
+
+
+
+
+
+
