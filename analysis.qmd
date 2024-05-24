@@ -53,7 +53,7 @@ tar_read(data_class)
 
 At the first glance from @tbl-dataformat, variables such as: `experience_level`, `employment_type`. `job_title`, etc. are initially formatted as *character*, which makes the summary statistics generated for these variables meaningless.
 
-To deal with this, we will convert all *character* variables into *factor* variables, then re-generate the data summary statistics. Moreover, since `work_year` values are integer ranged from 2020 to 2023, we also convert it into factor variable.
+To deal with this, we will convert all *character* variables into *factor* variables, then re-generate the data summary statistics.
 
 ## Missing values
 
@@ -200,12 +200,38 @@ Experience plays a crucial role in determining salary. Executive and senior-leve
 
 These trends underscore the dynamic and evolving landscape of the data engineering field. There is growing recognition of the value data professionals bring, coupled with a competitive job market that continues to push salaries upward.
 
-# Model fitting 
+# Regression Model 
 
-
+For better understanding on how experience level and company location affects the salary of data engineer, we fit a linear model for `salary_in_usd` against `company_loc` and `experience_level`. We also include `work_year` in the regression as explanatory variable to encounter for the trend pattern.
 
 ```{r}
 tar_read(summary_lm)
 ```
 
 
+### Coefficients and Their Interpretation:
+* **Intercept**: The negative intercept (-10,086,485) is not directly interpretable in a meaningful way.
+  
+* **Work Year**: The positive coefficient for `work_year` (5012) indicates that for each additional year, the salary increases by approximately $5,012, holding other factors constant. This suggests a general upward trend in salaries over time.
+
+* **Experience Level**:
+  * **Executive Level (EX)**: With a coefficient of 102,667, executive-level data engineers earn significantly higher salaries compared to the baseline (entry-level), all else being equal.
+  * **Senior Level (SE)**: The coefficient of 48,895 shows that senior-level engineers earn about $48,895 more than entry-level engineers.
+  * **Mid-Level (MI)**: The coefficient of 22,005 indicates that mid-level data engineers earn about $22,005 more than entry-level engineers.
+
+
+* **Company Location**:
+  * **US Location**: The coefficient of 57,474 for `company_locUS` means that data engineers working in the US earn about $57,474 more than their counterparts in other locations.
+
+### Statistical Significance:
+* The p-values for `work_year`, `experience_level` (EX, MI, SE), and `company_locUS` are all less than 0.05, indicating that these predictors are statistically significant.
+
+### Model Fit:
+* **R-squared**: The model explains about 31.7% of the variance in salaries (`R-squared = 0.317`), which is reasonable for a model with a few predictors but suggests there are other factors influencing salary that are not captured by this model.
+
+### Key Takeaways:
+1. **Yearly Salary Increase**: There is a steady increase in data engineer salaries over the years, with an average annual increase of $5,012.
+2. **Experience Level Impact**: Higher experience levels (especially executive and senior levels) significantly boost salaries, reflecting the premium placed on experience and expertise in the field.
+3. **Geographical Impact**: Working in the US significantly enhances salary prospects, likely due to the strong tech industry and higher cost of living.
+
+# Conclusion

@@ -234,7 +234,7 @@ Table&nbsp;1: Data format
 </div>
 </div>
 <p>At the first glance from <a href="#tbl-dataformat" class="quarto-xref">Table&nbsp;1</a>, variables such as: <code>experience_level</code>, <code>employment_type</code>. <code>job_title</code>, etc. are initially formatted as <em>character</em>, which makes the summary statistics generated for these variables meaningless.</p>
-<p>To deal with this, we will convert all <em>character</em> variables into <em>factor</em> variables, then re-generate the data summary statistics. Moreover, since <code>work_year</code> values are integer ranged from 2020 to 2023, we also convert it into factor variable.</p>
+<p>To deal with this, we will convert all <em>character</em> variables into <em>factor</em> variables, then re-generate the data summary statistics.</p>
 </section>
 <section id="missing-values" class="level2">
 <h2 class="anchored" data-anchor-id="missing-values">Missing values</h2>
@@ -343,13 +343,13 @@ Table&nbsp;3: Summary statistics of numerical variables
 </figcaption>
 <div aria-describedby="tbl-numsum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-stdout">
-<pre><code>     salary        salary_in_usd     remote_ratio   
- Min.   :  12000   Min.   : 12000   Min.   :  0.00  
- 1st Qu.: 102100   1st Qu.:102000   1st Qu.:  0.00  
- Median : 138750   Median :135000   Median :  0.00  
- Mean   : 156904   Mean   :143062   Mean   : 42.33  
- 3rd Qu.: 177600   3rd Qu.:175000   3rd Qu.:100.00  
- Max.   :4450000   Max.   :324000   Max.   :100.00  </code></pre>
+<pre><code>   work_year        salary        salary_in_usd     remote_ratio   
+ Min.   :2020   Min.   :  12000   Min.   : 12000   Min.   :  0.00  
+ 1st Qu.:2022   1st Qu.: 102100   1st Qu.:102000   1st Qu.:  0.00  
+ Median :2022   Median : 138750   Median :135000   Median :  0.00  
+ Mean   :2022   Mean   : 156904   Mean   :143062   Mean   : 42.33  
+ 3rd Qu.:2023   3rd Qu.: 177600   3rd Qu.:175000   3rd Qu.:100.00  
+ Max.   :2023   Max.   :4450000   Max.   :324000   Max.   :100.00  </code></pre>
 </div>
 </div>
 </figure>
@@ -366,22 +366,14 @@ Table&nbsp;4: Summary statistics of factor variables
 </figcaption>
 <div aria-describedby="tbl-facsum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-stdout">
-<pre><code> work_year  experience_level salary_currency employee_residence company_size
- 2020: 15   EN: 66           USD    :922     US     :903        L: 76       
- 2021: 36   EX: 51           GBP    : 54     GB     : 53        M:953       
- 2022:487   MI:202           EUR    : 49     ES     : 21        S:  8       
- 2023:499   SE:718           INR    :  6     CA     :  8                    
-                             TRY    :  2     GR     :  7                    
-                             AUD    :  1     IN     :  6                    
-                             (Other):  3     (Other): 39                    
- company_loc
- Other:131  
- US   :906  
-            
-            
-            
-            
-            </code></pre>
+<pre><code> experience_level salary_currency employee_residence company_size company_loc
+ EN: 66           USD    :922     US     :903        L: 76        Other:131  
+ EX: 51           GBP    : 54     GB     : 53        M:953        US   :906  
+ MI:202           EUR    : 49     ES     : 21        S:  8                   
+ SE:718           INR    :  6     CA     :  8                                
+                  TRY    :  2     GR     :  7                                
+                  AUD    :  1     IN     :  6                                
+                  (Other):  3     (Other): 39                                </code></pre>
 </div>
 </div>
 </figure>
@@ -461,14 +453,27 @@ Figure&nbsp;3: Average salary by experience
 <li><strong>Entry-level (EN)</strong>: Entry-level salaries have seen a substantial increase from 2020 to 2022, though there is a slight decline in 2023. This could suggest a correction or stabilization in entry-level hiring and compensation.</li>
 </ul></li>
 </ul>
-<section id="overall-insights" class="level3">
-<h3 class="anchored" data-anchor-id="overall-insights">Overall Insights:</h3>
-<ul>
-<li><strong>Growth in Salaries</strong>: Across the board, salaries for data engineers have been increasing, with notable differences based on location and experience level.</li>
-<li><strong>Location Impact</strong>: The US remains a top-paying region for data engineers, reflecting its robust tech industry and higher living costs.</li>
-<li><strong>Experience Matters</strong>: Experience level significantly impacts salary, with executive and senior-level positions commanding the highest pay, while entry-level positions show growth but also some variability.</li>
-</ul>
-<p>These trends highlight the dynamic nature of the data engineering field, with increasing recognition of the importance of data professionals and a competitive job market driving up salaries.</p>
+</section>
+<section id="overall-insights" class="level2">
+<h2 class="anchored" data-anchor-id="overall-insights">Overall Insights:</h2>
+<section id="growth-in-salaries" class="level3">
+<h3 class="anchored" data-anchor-id="growth-in-salaries">Growth in Salaries:</h3>
+<p>Salaries for data engineers have been on the rise overall, with significant variations depending on both location and experience level.</p>
+</section>
+<section id="location-impact" class="level3">
+<h3 class="anchored" data-anchor-id="location-impact">Location Impact:</h3>
+<p>The United States stands out as the highest-paying region for data engineers. This can be attributed to the country’s strong tech industry and higher cost of living, which drives up salary levels.</p>
+</section>
+<section id="experience-matters" class="level3">
+<h3 class="anchored" data-anchor-id="experience-matters">Experience Matters:</h3>
+<p>Experience plays a crucial role in determining salary. Executive and senior-level positions earn the highest pay, reflecting their expertise and leadership responsibilities. Entry-level positions, while showing positive growth, exhibit some fluctuations.</p>
+<p>These trends underscore the dynamic and evolving landscape of the data engineering field. There is growing recognition of the value data professionals bring, coupled with a competitive job market that continues to push salaries upward.</p>
+</section>
+</section>
+</section>
+<section id="regression-model" class="level1">
+<h1>Regression Model</h1>
+<p>For better understanding on how experience level and company location affects the salary of data engineer, we fit a linear model for <code>salary_in_usd</code> against <code>company_loc</code> and <code>experience_level</code>. We also include <code>work_year</code> in the regression as explanatory variable to encounter for the trend pattern.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tar_read</span>(summary_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -479,27 +484,63 @@ lm(formula = salary_in_usd ~ work_year + experience_level + company_loc,
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--129786  -31325   -4639   26761  160214 
+-128935  -32033   -3935   26065  161065 
 
 Coefficients:
-                   Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           33859      13312   2.544  0.01112 *  
-work_year2021          4819      14841   0.325  0.74547    
-work_year2022         15520      12937   1.200  0.23052    
-work_year2023         18973      13026   1.457  0.14554    
-experience_levelEX   102367       9056  11.304  &lt; 2e-16 ***
-experience_levelMI    21753       6841   3.180  0.00152 ** 
-experience_levelSE    48244       6305   7.652 4.54e-14 ***
-company_locUS         57163       5080  11.252  &lt; 2e-16 ***
+                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        -10086485    5013887  -2.012   0.0445 *  
+work_year               5012       2480   2.021   0.0435 *  
+experience_levelEX    102667       9042  11.354  &lt; 2e-16 ***
+experience_levelMI     22005       6822   3.225   0.0013 ** 
+experience_levelSE     48895       6252   7.820  1.3e-14 ***
+company_locUS          57474       5055  11.369  &lt; 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 47980 on 1029 degrees of freedom
-Multiple R-squared:  0.3175,    Adjusted R-squared:  0.3129 
-F-statistic: 68.38 on 7 and 1029 DF,  p-value: &lt; 2.2e-16</code></pre>
+Residual standard error: 47950 on 1031 degrees of freedom
+Multiple R-squared:  0.317, Adjusted R-squared:  0.3137 
+F-statistic: 95.71 on 5 and 1031 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
+<section id="coefficients-and-their-interpretation" class="level3">
+<h3 class="anchored" data-anchor-id="coefficients-and-their-interpretation">Coefficients and Their Interpretation:</h3>
+<ul>
+<li><p><strong>Intercept</strong>: The negative intercept (-10,086,485) is not directly interpretable in a meaningful way.</p></li>
+<li><p><strong>Work Year</strong>: The positive coefficient for <code>work_year</code> (5012) indicates that for each additional year, the salary increases by approximately $5,012, holding other factors constant. This suggests a general upward trend in salaries over time.</p></li>
+<li><p><strong>Experience Level</strong>:</p>
+<ul>
+<li><strong>Executive Level (EX)</strong>: With a coefficient of 102,667, executive-level data engineers earn significantly higher salaries compared to the baseline (entry-level), all else being equal.</li>
+<li><strong>Mid-Level (MI)</strong>: The coefficient of 22,005 indicates that mid-level data engineers earn about $22,005 more than entry-level engineers.</li>
+<li><strong>Senior Level (SE)</strong>: The coefficient of 48,895 shows that senior-level engineers earn about $48,895 more than entry-level engineers.</li>
+</ul></li>
+<li><p><strong>Company Location</strong>:</p>
+<ul>
+<li><strong>US Location</strong>: The coefficient of 57,474 for <code>company_locUS</code> means that data engineers working in the US earn about $57,474 more than their counterparts in other locations.</li>
+</ul></li>
+</ul>
 </section>
+<section id="statistical-significance" class="level3">
+<h3 class="anchored" data-anchor-id="statistical-significance">Statistical Significance:</h3>
+<ul>
+<li>The p-values for <code>work_year</code>, <code>experience_level</code> (EX, MI, SE), and <code>company_locUS</code> are all less than 0.05, indicating that these predictors are statistically significant.</li>
+<li>The most significant predictors (p-value &lt; 2e-16) are <code>experience_levelEX</code>, <code>company_locUS</code>, and <code>experience_levelSE</code>, highlighting their strong influence on salary.</li>
+</ul>
+</section>
+<section id="model-fit" class="level3">
+<h3 class="anchored" data-anchor-id="model-fit">Model Fit:</h3>
+<ul>
+<li><strong>Residual Standard Error</strong>: 47,950 indicates the average deviation of the observed salaries from the predicted salaries.</li>
+<li><strong>R-squared</strong>: The model explains about 31.7% of the variance in salaries (<code>R-squared = 0.317</code>), which is reasonable for a model with a few predictors but suggests there are other factors influencing salary that are not captured by this model.</li>
+</ul>
+</section>
+<section id="key-takeaways" class="level3">
+<h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways:</h3>
+<ol type="1">
+<li><strong>Yearly Salary Increase</strong>: There is a steady increase in data engineer salaries over the years, with an average annual increase of $5,012.</li>
+<li><strong>Experience Level Impact</strong>: Higher experience levels (especially executive and senior levels) significantly boost salaries, reflecting the premium placed on experience and expertise in the field.</li>
+<li><strong>Geographical Impact</strong>: Working in the US significantly enhances salary prospects, likely due to the strong tech industry and higher cost of living.</li>
+</ol>
+<p>These insights can help employers and job seekers understand the key factors influencing salaries in the data engineering field and make informed decisions based on experience levels and geographical locations.</p>
 </section>
 </section>
 
