@@ -1,188 +1,211 @@
 ---
-title: "analysis"
+title: "Data Analysis on Salary of Data Engineer"
 format: html
 editor: visual
 ---
 
 ```{r}
+#| message: False
+#| warning: False
+#| echo: False
 library(targets)
 library(dplyr)
 library(knitr)
 library(kableExtra)
 ```
 
+# Introduction
+
+We live in a world where every piece of data significantly influences human behavior. Consequently, data scientists and data analysts are essential for interpreting and generating insightful information, enabling organizations to make data-driven decisions. However, data originates from diverse sources with varying formats and structures, complicating immediate utilization. This challenge highlights the vital role of data engineers. They design and implement systems that collect, manage, and transform raw data into formats suitable for analysis. Positioned at the initial step of the data analysis pipeline, the role of a data engineer is indispensable. This is why data engineers are in high demand across various sectors like: finance, retail and technology.
+
+In this report, we will examine the salary trends for data engineers and analyze other factors influencing their income over the past four years from 2020 to 2023. 
+
+The data used for this analysis is [2023 Data Scientists Salary](https://www.kaggle.com/datasets/henryshan/2023-data-scientists-salary) from [Kaggle](https://www.kaggle.com/), whose author is Henry Shan.  
+
+# Initial Data Analysis
+
+Before commencing any analysis, we will review the metadata. The table below highlights every available variables in the data, as well as giving a short interpretation of each variable.
+
+| Variable | Explanation |
+|---|---|
+| work_year | The year the salary was paid. |
+| experience_level | The experience level in the job during the year. <br> **EN**: Entry-level / Junior <br> **MI**: Mid-level / Intermediate <br> **SE**: Senior-level / Expert <br> **EX**: Executive-level / Director |
+| employment_type | The type of employment for the role. <br> **PT**: Part-time <br> **FT**: Full-time <br> **CT**: Contract <br> **FL**: Freelance |
+| job_title | The role worked in during the year. |
+| salary | The total gross salary amount paid. |
+| salary_currency | The currency of the salary paid as an ISO 4217 currency code. |
+| salaryinusd | The salary in USD. |
+| employee_residence | Employee's primary country of residence during the work year as an ISO 3166 country code. |
+| remote_ratio | The overall amount of work done remotely. |
+| company_location | The country of the employer's main office or contracting branch. |
+| company_size | The median number of people that worked for the company during the year. |
+
+## Data format check
+
 ```{r}
-tar_read(sum_full_data)
+#| message: False
+#| warning: False
+#| echo: False
+#| label: tbl-dataformat
+#| tbl-cap: "Data format"
+tar_read(data_class)
 ```
 
+At the first glance from @tbl-dataformat, variables such as: `experience_level`, `employment_type`. `job_title`, etc. are initially formatted as *character*, which makes the summary statistics generated for these variables meaningless.
+
+To deal with this, we will convert all *character* variables into *factor* variables, then re-generate the data summary statistics. Moreover, since `work_year` values are integer ranged from 2020 to 2023, we also convert it into factor variable.
+
+## Missing values
+
+We then examine the data for any missing values.
+
 ```{r}
-tar_read(missing_de_data)
+#| message: False
+#| warning: False
+#| echo: False
+#| label: tbl-missingvalues
+#| tbl-cap: "Missing values"
+tar_read(missing_data_fac)
+```
+
+As shown in @tbl-missingvalues, the data is complete, with no missing values present.
+
+## Filtering data engineer role
+```{r}
+#| message: False
+#| warning: False
+#| echo: False
+
+tar_read(unique_job_title)
+```
+
+There are several specific data engineer role in the data. However, for this analysis, we will only concentrate on data engineer role in general. And therefore, we will filter out *Data Engineer* value from `job_title`.
+
+## Re-group company_location variable
+
+Moreover, we will re-group `company_location` values to **US** and **Other** for later comparison of salary between US organisations and foreign organisations.
+
+## Filtering full time role
+
+Finally, we then filter from `employment_type` to *Full time* role only.
+
+# Exploratory Data Analysis (EDA)
+
+## Summary statistics
+
+We use `summary()` to get the summary statistics of all variables. Moreover, since we have filtered to only one value for `job_title` and `employment_type`, we will not perform summary statistics for these 2 variables.
+
+### Numerical variables
+
+```{r}
+#| message: False
+#| warning: False
+#| echo: False
+#| label: tbl-numsum
+#| tbl-cap: "Summary statistics of numerical variables"
+tar_read(sum_numeric)
+```
+
+Given that the salary for the data engineer role is paid in the currency of the company's location, we will use `salary_in_usd` for our analysis.
+
+As shown in @tbl-numsum, the annual salaries for data engineers range from *12,000 USD* to *324,000 USD*, with a mean salary of approximately **143,000 USD**. This significant disparity in pay can be attributed to various factors, including the location of the role and the data engineer's level of experience.
+
+### Factor variables
+
+```{r}
+#| message: False
+#| warning: False
+#| echo: False
+#| label: tbl-facsum
+#| tbl-cap: "Summary statistics of factor variables"
+tar_read(sum_factor)
+```
+
+As we can see from @tbl-facsum, for both `company_loc` as well as `employee_residence`, highest frequency values are *US*. This may happen due to a few reasons:
+
+1. **Large Tech Industry Presence**:
+   The United States is home to many of the world's largest technology companies, such as Google, Apple, Microsoft, and Amazon. These companies often have significant demand for data engineers and other data-related roles, leading to a higher concentration of such jobs in the US.
+
+2. **Higher Salaries and Better Opportunities**:
+   Salaries for tech roles, including data engineers, tend to be higher in the US compared to other countries. This attracts talent from around the world to seek employment in the US, contributing to the higher frequency of employees residing in the US.
+
+3. **Headquarters Location**:
+   Many multinational tech companies have their headquarters in the US. As a result, their main offices are located there, increasing the frequency of the US as the company location.
+   
+Moreover, most of the data engineers for this data is currently in *SE* or Senior-level role.
+
+## Average Salary Trend
+
+```{r}
+#| message: False
+#| warning: False
+#| echo: False
+#| label: fig-salarytrend
+#| fig-cap: "Average salary trend"
+tar_read(salary_trend_plot)
 ```
 
 
-```{r}
-tar_read(sum_de_data)
-```
+As we can see from @fig-salarytrend, there is a consistent upward trend in the average salary for data engineers from 2020 to 2023.
+
+The average salary has increased significantly each year, indicating a growing demand for data engineers and possibly an increasing recognition of the value they bring to organizations.
+
+## Average Salary over Years by Company Location
 
 ```{r}
+#| message: False
+#| warning: False
+#| echo: False
+#| label: fig-salarycom
+#| fig-cap: "Average salary by company location"
+
+tar_read(salary_company_loc_plot)
+```
+
+From @fig-salarycom, we can see that there is a huge gap in salary of data engineers between US organisations and foreign organisations. This may reflect the higher cost of living in the US, greater demand for tech talent, or more competitive salary packages offered by US companies.
+
+* **US**: Salaries in the US have shown a more stable and slightly upward trend overall. However, there is a slight decrease from 2020 to 2021, followed by a significant increase from 2021 to 2022, and a continued rise into 2023.
+
+* **Other Locations**: Salaries in other locations have followed a similar pattern. There is a slight increase from 2020 to 2021, a significant jump from 2021 to 2022, and a continued rise from 2022 to 2023.
+
+
+## Average Salary over Years by Experience Level
+
+```{r}
+#| message: False
+#| warning: False
+#| echo: False
+#| label: fig-salaryexper
+#| fig-cap: "Average salary by experience"
+
 tar_read(salary_experience_plot)
 ```
 
-```{r}
-tar_read(salary_company_loc_plot)
+- **Experience Level Impact**:
+  - **Executive-level (EX)**: Executive-level data engineers see the highest salaries, with a notable peak around 2022, indicating high rewards for top-tier experience and leadership roles.
+  - **Senior-level (SE)**: Senior-level salaries show a steady upward trend, reflecting the growing value of experienced professionals.
+  - **Mid-level (MI)**: Mid-level salaries have been relatively stable with a slight increase, indicating moderate growth in compensation for this experience tier.
+  - **Entry-level (EN)**: Entry-level salaries have seen a substantial increase from 2020 to 2022, though there is a slight decline in 2023. This could suggest a correction or stabilization in entry-level hiring and compensation.
 
-```
+## Overall Insights:
 
-```{r}
-tar_read(salary_trend_plot)
-```
+### Growth in Salaries:
+Salaries for data engineers have been on the rise overall, with significant variations depending on both location and experience level.
+
+### Location Impact:
+The United States stands out as the highest-paying region for data engineers. This can be attributed to the country's strong tech industry and higher cost of living, which drives up salary levels.
+
+### Experience Matters:
+Experience plays a crucial role in determining salary. Executive and senior-level positions earn the highest pay, reflecting their expertise and leadership responsibilities. Entry-level positions, while showing positive growth, exhibit some fluctuations.
+
+These trends underscore the dynamic and evolving landscape of the data engineering field. There is growing recognition of the value data professionals bring, coupled with a competitive job market that continues to push salaries upward.
+
+# Model fitting 
+
+
 
 ```{r}
 tar_read(summary_lm)
 ```
-
-
-### Numeric Variable
-
-```{r, results='asis'}
-tar_load(de_data)
-# Filter out numerical variables from train dataset and set it into a new df
-numerical_dat <- de_data[, sapply(de_data, is.numeric)]
-
-numerical_summary <- data.frame(
-  Variable = character(0),
-  Min = numeric(0),
-  Quartile_1 = numeric(0),
-  Median = numeric(0),
-  Mean = numeric(0),
-  Quartile_3 = numeric(0),
-  Max = numeric(0),
-  stringsAsFactors = FALSE
-)
-
-# Create summary statistics table for numerical variables
-for (i in 2:ncol(numerical_dat)) {
-  x <- numerical_dat[, 2]
-  
-  # Calculate summary statistics using summary()
-  summary_result <- summary(x)
-  
-  # Define a regular expression pattern to match the numeric value
-  pattern <- "-?\\d+\\.?\\d*"
-  
-  # Create a data frame for the current numerical variable
-  result_df <- data.frame(
-    Variable = colnames(numerical_dat)[i],
-    Min = regmatches(summary_result[1], gregexpr(pattern, summary_result[1], perl=TRUE))[[1]],
-    Quartile_1 = regmatches(summary_result[2], gregexpr(pattern, summary_result[2],perl=TRUE))[[1]],
-    Median = round(as.numeric(regmatches(summary_result[3], gregexpr(pattern, summary_result[3], perl=TRUE))[[1]]),2),
-    Mean = round(as.numeric(regmatches(summary_result[4], gregexpr(pattern, summary_result[4], perl=TRUE))[[1]]),2),
-    Quartile_3 = regmatches(summary_result[5], gregexpr(pattern, summary_result[5],perl=TRUE))[[1]],
-    Max = regmatches(summary_result[6], gregexpr(pattern, summary_result[6], perl=TRUE))[[1]],
-    stringsAsFactors = FALSE
-  )
-  
-  # Bind the result to the summary dataframe
-  numerical_summary <- rbind(numerical_summary, result_df)
-  options(scipen = 0)
-}
-
-# Set row names to be the names of the numerical variables
-rownames(numerical_summary) <- numerical_summary$Variable
-numerical_summary <- numerical_summary[, -1]
-
-# Creating a scrollable HTML table
-html_numerical_table <- kable(numerical_summary, "html") %>%
-  kable_styling(full_width = FALSE) %>%
-  as.character()
-
-# Creating scrollable div
-html_numerical_output <- paste0(
-  '<div style="max-height: 400px; overflow-y: auto;" id="NumericVar">',
-  '<p>Summary statistics of ltd aggregate data features</p>',
-  html_numerical_table,
-  '</div>'
-)
-
-cat(html_numerical_output)
-
-```
-
-### Factor Variable
-
-```{r, results='asis'}
-
-# Filter out factor variables from train dataset and set it into new df
-factor_dat <- de_data[, sapply(de_data, is.factor)]
-
-# Create an empty dataframe to store results
-factor_summary <- data.frame(
-  Factor_Variable = character(0),
-  Count = numeric(0),
-  Unique = numeric(0),
-  Mode = character(0),
-  Frequency = numeric(0),
-  stringsAsFactors = FALSE
-)
-
-# Create summary statistics table for factor variables
-for (i in 1:ncol(factor_dat)) {
-  x <- factor_dat[, i]
-  
-  # Get distinct values
-  unique_values <- unique(x)
-  
-  # Generate frequency table
-  table_result <- table(factor_dat[, i])
-
-  # Remove NAs from the result
-  table_result <- table_result[!is.na(names(table_result))]
-
-  # Find the level with the highest frequency
-  mode <- names(which.max(table_result))
-  
-  # Frequency of the mode values
-  mode_freq <- sum(x == mode, na.rm = TRUE)
-  
-  # Create a data frame for the current factor variable
-  result_df <- data.frame(
-    Factor_Variable = names(factor_dat)[i],
-    Count = sum(!is.na(x)),
-    Unique = sum(!is.na(unique_values)),
-    Mode = mode,
-    Frequency = mode_freq,
-    stringsAsFactors = FALSE
-  )
-  
-  # Bind the result to the summary dataframe
-  factor_summary <- rbind(factor_summary, result_df)
-}
-
-# Set row names to be the names of the factor variables
-rownames(factor_summary) <- factor_summary$Factor_Variable
-factor_summary <- factor_summary[, -1]
-
-# Creating a scrollable HTML table
-html_categorical_table <- kable(factor_summary, "html") %>%
-  kable_styling(full_width = FALSE) %>%
-  as.character()
-
-# Creating scrollable div
-html_categorical_output <- paste0(
-  '<div style="max-height: 400px; overflow-y: auto;" id="NumericVar">',
-  '<p>Summary statistics of factor features</p>',
-  html_categorical_table,
-  '</div>'
-)
-
-cat(html_categorical_output)
-```
-
-
-
-
-
-
-
 
 
