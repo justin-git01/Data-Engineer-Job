@@ -1,6 +1,6 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
-.Random.seed|object|844b9b3c23672a44|||||||||||||||
-analysis|stem|a127ae60ecddfb3f|964bb3628220e714|c4efd98da2423f87|-826194222|analysis_files*analysis.html*analysis.qmd|t19867.2698327075s|228362e704068cbf|1676123|file|local|vector|||8.295||
+.Random.seed|object|4ef47726e0a71d74|||||||||||||||
+analysis|stem|a382fe292cab011f|964bb3628220e714|e67aea90f94c526a|-826194222|analysis_files*analysis.html*analysis.qmd|t19867.2782017258s|4a6b5a8b886a5d16|1687276|file|local|vector|||8.385||
 data|stem|805b51d3c8f66ada|d996af074d5d8044|a004586e02377d73|33550471||t19861.2548758821s|56dc47897a7195fa|26504|rds|local|vector|||0.016||
 data_class|stem|5d329afdd8b10b17|c8e26cb8daaf01af|0207ed7406f58222|-329733989||t19867.2061455598s|922598d76622d54c|287|rds|local|vector|||0.005||
 data_engineer_roles|stem|323c4cd4f45300dc|b0d32d36e52081a7|db7ffc458afbe1c5|-1889574623||t19867.2697324203s|eaea936c16ca6a0a|8328|rds|local|vector|||0.001||
@@ -20,9 +20,9 @@ lm_mod|stem|50367a6ed3204a6b|9af67d12fc214bf6|6adb8180fc79d9e0|-1147651051||t198
 missing_data_fac|stem|ea01dae1832ea9bc|9cf204f5134899c4|db7ffc458afbe1c5|594314904||t19867.2697325777s|7588b18ac8276279|274|rds|local|vector|||0.006||
 missing_de_data|stem|ea01dae1832ea9bc|ff58bcc7f0e6d381|7de0ded78e329eb8|-133293114||t19861.3350276685s|7588b18ac8276279|274|rds|local|vector|||0.005||
 numerical_dat|stem|bee4b5905ed433a8|3064b4f91473b4a7|90a3e09fbc50695d|1645326908||t19867.2697366745s|9b1975ec8e49b18a|2824|rds|local|vector|||0||
-salary_company_loc_plot|stem|0f95b096a0336666|3c5210c68ca379cc|6adb8180fc79d9e0|1888934687||t19867.2697351064s|c6549370fab1fda1|95918|rds|local|vector|||0.015||
-salary_experience_plot|stem|9581e301acdc0e12|31fb7fa5c1c768c1|6adb8180fc79d9e0|450633859||t19867.2697361046s|e609b87cac0d83c9|96077|rds|local|vector|||0.018||
-salary_trend_plot|stem|e00d796e1ab47d43|f5f075c7f5438ffa|6adb8180fc79d9e0|-1042507882||t19867.2697342378s|1b5043dfee60ca29|95726|rds|local|vector|||0.036||
+salary_company_loc_plot|stem|203f0dfc799a9146|2cefa6eac541d556|6adb8180fc79d9e0|1888934687||t19867.2781038611s|97f017052bbef007|95955|rds|local|vector|||0.012||
+salary_experience_plot|stem|840a284a9e34d438|de266352e4310aa2|6adb8180fc79d9e0|450633859||t19867.278104555s|9a28b84174c63a6e|96112|rds|local|vector|||0.012||
+salary_trend_plot|stem|bb4c37bb2467c1af|b5172ac1ae0b9632|6adb8180fc79d9e0|-1042507882||t19867.2781030975s|ba08e8768a61035e|95778|rds|local|vector|||0.043||
 sum_de_data|stem|6d5bf48ad5318672|344d7a504c4d9cea|6adb8180fc79d9e0|-1976847913||t19867.2697365079s|69ad9763a553bcd5|714|rds|local|vector|||0.004||
 sum_factor|stem|2d6de8023a490ddb|d2ddcbf2db1cc4b0|fd79f056c8901fe9|-734958056||t19867.2697369516s|763d944459e6841f|372|rds|local|vector|||0.002||
 sum_full_data|stem|2ec56464aafce825|4cac213241bde903|0207ed7406f58222|-795354547||t19861.3350274544s|42e4fc8df422307b|466|rds|local|vector|||0.007||

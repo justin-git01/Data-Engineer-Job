@@ -32,7 +32,7 @@ list(
                group_by(work_year) |>
                summarize(average_salary = mean(salary_in_usd), .groups = 'drop') |>
                ggplot(aes(x = work_year, y = average_salary)) +
-               geom_line(color = "blue", group = 1) +
+               geom_line(color = "blue", group = 1, linewidth = 1.1) +
                geom_point() +
                labs(
                  title = "Average Salary over Years",
@@ -44,7 +44,7 @@ list(
               group_by(work_year, experience_level) |>
               summarize(average_salary = mean(salary_in_usd), .groups = 'drop') |>
               ggplot(aes(x = work_year, y = average_salary, color = experience_level, group = experience_level)) +
-              geom_line() +
+              geom_line(linewidth = 1.1) +
               geom_point() +
               labs(
                 title = "Average Salary over Years by Experience Level",
@@ -57,7 +57,7 @@ list(
               group_by(work_year, company_loc) |>
               summarize(average_salary = mean(salary_in_usd), .groups = 'drop') |>
               ggplot(aes(x = work_year, y = average_salary, color = company_loc, group = company_loc)) +
-              geom_line() +
+              geom_line(linewidth = 1.1) +
               geom_point() +
               labs(
                 title = "Average Salary over Years by Company Location",

@@ -1,6 +1,9 @@
 ---
 title: "Data Analysis on Salary of Data Engineer"
-format: html
+format: 
+  html:
+    theme: united
+    toc: true
 editor: visual
 ---
 
@@ -187,15 +190,15 @@ tar_read(salary_experience_plot)
   - **Mid-level (MI)**: Mid-level salaries have been relatively stable with a slight increase, indicating moderate growth in compensation for this experience tier.
   - **Entry-level (EN)**: Entry-level salaries have seen a substantial increase from 2020 to 2022, though there is a slight decline in 2023. This could suggest a correction or stabilization in entry-level hiring and compensation.
 
-## Overall Insights:
+## Overall Insights
 
-### Growth in Salaries:
+### Growth in Salaries
 Salaries for data engineers have been on the rise overall, with significant variations depending on both location and experience level.
 
-### Location Impact:
+### Location Impact
 The United States stands out as the highest-paying region for data engineers. This can be attributed to the country's strong tech industry and higher cost of living, which drives up salary levels.
 
-### Experience Matters:
+### Experience Matters
 Experience plays a crucial role in determining salary. Executive and senior-level positions earn the highest pay, reflecting their expertise and leadership responsibilities. Entry-level positions, while showing positive growth, exhibit some fluctuations.
 
 These trends underscore the dynamic and evolving landscape of the data engineering field. There is growing recognition of the value data professionals bring, coupled with a competitive job market that continues to push salaries upward.
@@ -209,7 +212,7 @@ tar_read(summary_lm)
 ```
 
 
-### Coefficients and Their Interpretation:
+### Coefficients and Their Interpretation
 * **Intercept**: The negative intercept (-10,086,485) is not directly interpretable in a meaningful way.
   
 * **Work Year**: The positive coefficient for `work_year` (5012) indicates that for each additional year, the salary increases by approximately $5,012, holding other factors constant. This suggests a general upward trend in salaries over time.
@@ -220,18 +223,24 @@ tar_read(summary_lm)
   * **Mid-Level (MI)**: The coefficient of 22,005 indicates that mid-level data engineers earn about $22,005 more than entry-level engineers.
 
 
-* **Company Location**:
+* **Company Location**
   * **US Location**: The coefficient of 57,474 for `company_locUS` means that data engineers working in the US earn about $57,474 more than their counterparts in other locations.
 
-### Statistical Significance:
+### Statistical Significance
 * The p-values for `work_year`, `experience_level` (EX, MI, SE), and `company_locUS` are all less than 0.05, indicating that these predictors are statistically significant.
 
-### Model Fit:
+### Model Fit
 * **R-squared**: The model explains about 31.7% of the variance in salaries (`R-squared = 0.317`), which is reasonable for a model with a few predictors but suggests there are other factors influencing salary that are not captured by this model.
 
-### Key Takeaways:
+### Key Takeaways
 1. **Yearly Salary Increase**: There is a steady increase in data engineer salaries over the years, with an average annual increase of $5,012.
 2. **Experience Level Impact**: Higher experience levels (especially executive and senior levels) significantly boost salaries, reflecting the premium placed on experience and expertise in the field.
 3. **Geographical Impact**: Working in the US significantly enhances salary prospects, likely due to the strong tech industry and higher cost of living.
 
 # Conclusion
+
+### Conclusion
+
+In conclusion, the analysis reveals a significant upward trend in data engineer salaries over the past few years, driven by factors such as experience level and geographical location. Executive and senior-level positions command the highest salaries, highlighting the value placed on experience and expertise. Additionally, data engineers based in the United States enjoy higher salaries compared to those in other locations, reflecting the strong demand and competitive compensation in the US tech industry.
+
+These findings underscore the dynamic nature of the data engineering field and the growing recognition of the critical role data professionals play in modern organizations. As the demand for skilled data engineers continues to rise, understanding the factors that influence salary trends can provide valuable insights for both employers and job seekers, guiding strategic decisions in recruitment, career planning, and compensation management.

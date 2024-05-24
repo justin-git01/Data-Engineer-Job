@@ -71,10 +71,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body>
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#initial-data-analysis" id="toc-initial-data-analysis" class="nav-link" data-scroll-target="#initial-data-analysis">Initial Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-format-check" id="toc-data-format-check" class="nav-link" data-scroll-target="#data-format-check">Data format check</a></li>
+  <li><a href="#missing-values" id="toc-missing-values" class="nav-link" data-scroll-target="#missing-values">Missing values</a></li>
+  <li><a href="#filtering-data-engineer-role" id="toc-filtering-data-engineer-role" class="nav-link" data-scroll-target="#filtering-data-engineer-role">Filtering data engineer role</a></li>
+  <li><a href="#re-group-company_location-variable" id="toc-re-group-company_location-variable" class="nav-link" data-scroll-target="#re-group-company_location-variable">Re-group company_location variable</a></li>
+  <li><a href="#filtering-full-time-role" id="toc-filtering-full-time-role" class="nav-link" data-scroll-target="#filtering-full-time-role">Filtering full time role</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>
+  <ul class="collapse">
+  <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary statistics</a>
+  <ul class="collapse">
+  <li><a href="#numerical-variables" id="toc-numerical-variables" class="nav-link" data-scroll-target="#numerical-variables">Numerical variables</a></li>
+  <li><a href="#factor-variables" id="toc-factor-variables" class="nav-link" data-scroll-target="#factor-variables">Factor variables</a></li>
+  </ul></li>
+  <li><a href="#average-salary-trend" id="toc-average-salary-trend" class="nav-link" data-scroll-target="#average-salary-trend">Average Salary Trend</a></li>
+  <li><a href="#average-salary-over-years-by-company-location" id="toc-average-salary-over-years-by-company-location" class="nav-link" data-scroll-target="#average-salary-over-years-by-company-location">Average Salary over Years by Company Location</a></li>
+  <li><a href="#average-salary-over-years-by-experience-level" id="toc-average-salary-over-years-by-experience-level" class="nav-link" data-scroll-target="#average-salary-over-years-by-experience-level">Average Salary over Years by Experience Level</a></li>
+  <li><a href="#overall-insights" id="toc-overall-insights" class="nav-link" data-scroll-target="#overall-insights">Overall Insights</a>
+  <ul class="collapse">
+  <li><a href="#growth-in-salaries" id="toc-growth-in-salaries" class="nav-link" data-scroll-target="#growth-in-salaries">Growth in Salaries</a></li>
+  <li><a href="#location-impact" id="toc-location-impact" class="nav-link" data-scroll-target="#location-impact">Location Impact</a></li>
+  <li><a href="#experience-matters" id="toc-experience-matters" class="nav-link" data-scroll-target="#experience-matters">Experience Matters</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#regression-model" id="toc-regression-model" class="nav-link" data-scroll-target="#regression-model">Regression Model</a>
+  <ul class="collapse">
+  <li><a href="#coefficients-and-their-interpretation" id="toc-coefficients-and-their-interpretation" class="nav-link" data-scroll-target="#coefficients-and-their-interpretation">Coefficients and Their Interpretation</a></li>
+  <li><a href="#statistical-significance" id="toc-statistical-significance" class="nav-link" data-scroll-target="#statistical-significance">Statistical Significance</a></li>
+  <li><a href="#model-fit" id="toc-model-fit" class="nav-link" data-scroll-target="#model-fit">Model Fit</a></li>
+  <li><a href="#key-takeaways" id="toc-key-takeaways" class="nav-link" data-scroll-target="#key-takeaways">Key Takeaways</a></li>
+  </ul></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a>
+  <ul class="collapse">
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -455,17 +499,17 @@ Figure&nbsp;3: Average salary by experience
 </ul>
 </section>
 <section id="overall-insights" class="level2">
-<h2 class="anchored" data-anchor-id="overall-insights">Overall Insights:</h2>
+<h2 class="anchored" data-anchor-id="overall-insights">Overall Insights</h2>
 <section id="growth-in-salaries" class="level3">
-<h3 class="anchored" data-anchor-id="growth-in-salaries">Growth in Salaries:</h3>
+<h3 class="anchored" data-anchor-id="growth-in-salaries">Growth in Salaries</h3>
 <p>Salaries for data engineers have been on the rise overall, with significant variations depending on both location and experience level.</p>
 </section>
 <section id="location-impact" class="level3">
-<h3 class="anchored" data-anchor-id="location-impact">Location Impact:</h3>
+<h3 class="anchored" data-anchor-id="location-impact">Location Impact</h3>
 <p>The United States stands out as the highest-paying region for data engineers. This can be attributed to the country’s strong tech industry and higher cost of living, which drives up salary levels.</p>
 </section>
 <section id="experience-matters" class="level3">
-<h3 class="anchored" data-anchor-id="experience-matters">Experience Matters:</h3>
+<h3 class="anchored" data-anchor-id="experience-matters">Experience Matters</h3>
 <p>Experience plays a crucial role in determining salary. Executive and senior-level positions earn the highest pay, reflecting their expertise and leadership responsibilities. Entry-level positions, while showing positive growth, exhibit some fluctuations.</p>
 <p>These trends underscore the dynamic and evolving landscape of the data engineering field. There is growing recognition of the value data professionals bring, coupled with a competitive job market that continues to push salaries upward.</p>
 </section>
@@ -503,44 +547,49 @@ F-statistic: 95.71 on 5 and 1031 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <section id="coefficients-and-their-interpretation" class="level3">
-<h3 class="anchored" data-anchor-id="coefficients-and-their-interpretation">Coefficients and Their Interpretation:</h3>
+<h3 class="anchored" data-anchor-id="coefficients-and-their-interpretation">Coefficients and Their Interpretation</h3>
 <ul>
 <li><p><strong>Intercept</strong>: The negative intercept (-10,086,485) is not directly interpretable in a meaningful way.</p></li>
 <li><p><strong>Work Year</strong>: The positive coefficient for <code>work_year</code> (5012) indicates that for each additional year, the salary increases by approximately $5,012, holding other factors constant. This suggests a general upward trend in salaries over time.</p></li>
 <li><p><strong>Experience Level</strong>:</p>
 <ul>
 <li><strong>Executive Level (EX)</strong>: With a coefficient of 102,667, executive-level data engineers earn significantly higher salaries compared to the baseline (entry-level), all else being equal.</li>
-<li><strong>Mid-Level (MI)</strong>: The coefficient of 22,005 indicates that mid-level data engineers earn about $22,005 more than entry-level engineers.</li>
 <li><strong>Senior Level (SE)</strong>: The coefficient of 48,895 shows that senior-level engineers earn about $48,895 more than entry-level engineers.</li>
+<li><strong>Mid-Level (MI)</strong>: The coefficient of 22,005 indicates that mid-level data engineers earn about $22,005 more than entry-level engineers.</li>
 </ul></li>
-<li><p><strong>Company Location</strong>:</p>
+<li><p><strong>Company Location</strong></p>
 <ul>
 <li><strong>US Location</strong>: The coefficient of 57,474 for <code>company_locUS</code> means that data engineers working in the US earn about $57,474 more than their counterparts in other locations.</li>
 </ul></li>
 </ul>
 </section>
 <section id="statistical-significance" class="level3">
-<h3 class="anchored" data-anchor-id="statistical-significance">Statistical Significance:</h3>
+<h3 class="anchored" data-anchor-id="statistical-significance">Statistical Significance</h3>
 <ul>
 <li>The p-values for <code>work_year</code>, <code>experience_level</code> (EX, MI, SE), and <code>company_locUS</code> are all less than 0.05, indicating that these predictors are statistically significant.</li>
-<li>The most significant predictors (p-value &lt; 2e-16) are <code>experience_levelEX</code>, <code>company_locUS</code>, and <code>experience_levelSE</code>, highlighting their strong influence on salary.</li>
 </ul>
 </section>
 <section id="model-fit" class="level3">
-<h3 class="anchored" data-anchor-id="model-fit">Model Fit:</h3>
+<h3 class="anchored" data-anchor-id="model-fit">Model Fit</h3>
 <ul>
-<li><strong>Residual Standard Error</strong>: 47,950 indicates the average deviation of the observed salaries from the predicted salaries.</li>
 <li><strong>R-squared</strong>: The model explains about 31.7% of the variance in salaries (<code>R-squared = 0.317</code>), which is reasonable for a model with a few predictors but suggests there are other factors influencing salary that are not captured by this model.</li>
 </ul>
 </section>
 <section id="key-takeaways" class="level3">
-<h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways:</h3>
+<h3 class="anchored" data-anchor-id="key-takeaways">Key Takeaways</h3>
 <ol type="1">
 <li><strong>Yearly Salary Increase</strong>: There is a steady increase in data engineer salaries over the years, with an average annual increase of $5,012.</li>
 <li><strong>Experience Level Impact</strong>: Higher experience levels (especially executive and senior levels) significantly boost salaries, reflecting the premium placed on experience and expertise in the field.</li>
 <li><strong>Geographical Impact</strong>: Working in the US significantly enhances salary prospects, likely due to the strong tech industry and higher cost of living.</li>
 </ol>
-<p>These insights can help employers and job seekers understand the key factors influencing salaries in the data engineering field and make informed decisions based on experience levels and geographical locations.</p>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<section id="conclusion-1" class="level3">
+<h3 class="anchored" data-anchor-id="conclusion-1">Conclusion</h3>
+<p>In conclusion, the analysis reveals a significant upward trend in data engineer salaries over the past few years, driven by factors such as experience level and geographical location. Executive and senior-level positions command the highest salaries, highlighting the value placed on experience and expertise. Additionally, data engineers based in the United States enjoy higher salaries compared to those in other locations, reflecting the strong demand and competitive compensation in the US tech industry.</p>
+<p>These findings underscore the dynamic nature of the data engineering field and the growing recognition of the critical role data professionals play in modern organizations. As the demand for skilled data engineers continues to rise, understanding the factors that influence salary trends can provide valuable insights for both employers and job seekers, guiding strategic decisions in recruitment, career planning, and compensation management.</p>
 </section>
 </section>
 
